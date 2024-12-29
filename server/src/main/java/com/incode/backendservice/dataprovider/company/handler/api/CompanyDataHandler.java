@@ -46,7 +46,7 @@ public abstract class CompanyDataHandler {
         CompanyResultWrapperDto resultWrapper = new CompanyResultWrapperDto();
         result.setResultWrapper(resultWrapper);
         resultWrapper.setStatus(mapper.fromRemoteToDto(companyData.getStatus()));
-
+        resultWrapper.setPossibleMatches(0);
         if (companyData.getStatus() == CompanyStatusRemote.SUCCESS) {
             resultWrapper.setSource(getDataProviderDto(getType()));
             resultWrapper.setPossibleMatches(companyData.getTotalNumberOfElements());

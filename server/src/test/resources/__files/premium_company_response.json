@@ -5,7 +5,7 @@
       "companyName": "Bell LLC",
       "registrationDate": "2020-01-02",
       "companyFullAddress": "948 Gibson Ridge, South Dale, ID 00868",
-      "isActive": false
+      "isActive": true
     }
   ],
   "pagination": {

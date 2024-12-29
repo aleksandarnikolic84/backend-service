@@ -38,8 +38,8 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
@@ -113,6 +113,7 @@
                             <ignoreFileOverride>.openapi-generator-ignore</ignoreFileOverride>
                             <modelNameSuffix>Response</modelNameSuffix>
                             <configOptions>
+                                <useJakartaEe>true</useJakartaEe>
                                 <dateLibrary>java8</dateLibrary>
                                 <serializationLibrary>jackson</serializationLibrary>
                                 <useBeanValidation>true</useBeanValidation>
@@ -121,9 +122,6 @@
                                 <interfaceOnly>true</interfaceOnly>
                                 <skipDefaultInterface>true</skipDefaultInterface>
                             </configOptions>
-                            <typeMappings>
-                                <typeMapping>Double=java.math.BigDecimal</typeMapping>
-                            </typeMappings>
                         </configuration>
                     </execution>
                 </executions>

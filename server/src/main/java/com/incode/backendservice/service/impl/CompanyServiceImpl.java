@@ -30,6 +30,7 @@ public class CompanyServiceImpl implements CompanyService {
         CompaniesDto companiesDto = companyDataProvider.fetchData(cin, pageSize);
         CompanyResultWrapperDto resultWrapper = companiesDto.getResultWrapper();
 
+        // Filter out inactive companies
         Stream<CompanyDto> dtoStream = resultWrapper.getCompanies().stream()
                 .filter(CompanyDto::isActive);
         if (upToSize != null && !upToSize.equals(0)) {

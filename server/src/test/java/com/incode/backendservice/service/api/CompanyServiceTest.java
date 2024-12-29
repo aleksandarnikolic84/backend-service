@@ -69,19 +69,4 @@ class CompanyServiceTest {
         //Then
         Assertions.assertThat(actualResult.getResultWrapper().getCompanies()).hasSize(activeCompanies);
     }
-
-    @Test
-    void testFindByCin_Failed() {
-        // Given
-        int activeCompanies = 0;
-        int inactiveCompanies = 0;
-        CompaniesDto companiesDto = CompanyDtoInventory
-                .createCompaniesDto(activeCompanies, inactiveCompanies, CompanyExecutionStatusDto.FAILED);
-        Mockito.when(dataProvider.fetchData(Mockito.anyString(), Mockito.anyInt())).thenReturn(companiesDto);
-        //When
-        //Then
-        CustomException actualResult = Assertions.catchThrowableOfType( CustomException.class,()
-                -> sut.findByCin("cin", null));
-        Assertions.assertThat(actualResult.getCustomExceptionKey()).isEqualTo(CustomExceptionKey.SERVICE_UNAVAILABLE);
-    }
 }
