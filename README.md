@@ -17,7 +17,7 @@ Project contains four repositories:
   with a uniform interface and implementation, encapsulating implementation details.
   Logic is under package `server/src/main/java/com/incode/backendservice/external/api/company`
 * **Chain of Responsibility**: For third party call, choreography variation of Chain Of Responsibility 
-  with Template pattern is chosen.
+  with Template pattern is chosen. Using this approach if third company provider appears it will be integrated smoothly.
   This logic is under package `server/src/main/java/com/incode/backendservice/dataprovider/company`
 * **Facade layer**: Acts as an orchestrator between the company and verification layers to prevent mixing of domains.
 * **Code uniformity**:
