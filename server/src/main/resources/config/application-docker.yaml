@@ -1,0 +1,19 @@
+spring:
+  # ===================================================================
+  # Datasource
+  # ===================================================================
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://backend-service-postgresql:5432/BackendService
+    username: BackendService
+    name:
+    password:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+backend:
+  company:
+    companyRegistryUrl: http://company-registry-service:8085/api

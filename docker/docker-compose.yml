@@ -1,0 +1,52 @@
+version: '3.5'
+services:
+  company-registry-postgresql:
+    container_name: company-registry-postgresql
+    image: postgres:16.6-alpine
+    environment:
+      - POSTGRES_USER=CompanyRegistry
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
+    networks:
+      - incode
+  backend-service-postgresql:
+    container_name: backend-service-postgresql
+    image: postgres:16.6-alpine
+    environment:
+      - POSTGRES_USER=BackendService
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5433:5432
+    networks:
+      - incode
+  company-registry-service:
+    image: company-registry-service:0.0.1
+    container_name: company-registry-service
+    restart: always
+    ports:
+      - "8085:8085"
+    depends_on:
+      - company-registry-postgresql
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+    networks:
+      - incode
+  backend-service:
+    image: backend-service:0.0.1
+    container_name: backend-service
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - company-registry-postgresql
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+    networks:
+      - incode
+networks:
+  incode:
+    name: incode
+    driver: bridge
