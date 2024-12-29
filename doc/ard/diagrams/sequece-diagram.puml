@@ -1,0 +1,26 @@
+@startuml
+title Backend Service Flow
+
+actor "User" as user
+participant "Backend Service" as backend_service
+participant "Free Company Service" as free_company_service
+participant "Premium Company Service" as premium_company_service
+
+user --> backend_service: Get company (REST)
+backend_service --> free_company_service : Get company from Free service (REST)
+free_company_service --> backend_service : Return response (JSON)
+backend_service --> user: Return response (JSON)
+alt Free service is not available or data does not exist
+backend_service --> premium_company_service: Get company from Premium service (REST))
+premium_company_service --> backend_service : Return response (JSON)
+backend_service --> user: Return response (JSON)
+
+else Premium Service is not available
+backend_service --> user: Return response HTTP 503
+
+
+end
+
+
+
+@enduml

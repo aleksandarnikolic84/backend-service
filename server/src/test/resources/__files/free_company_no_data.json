@@ -1,0 +1,9 @@
+{
+  "companies": [],
+  "pagination": {
+    "pageNumber": 0,
+    "pageSize": 0,
+    "totalPages": 0,
+    "totalElements": 0
+  }
+}

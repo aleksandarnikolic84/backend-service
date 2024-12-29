@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-verification-table
+      author: aleksandar.nikolic
+      changes:
+        - createSequence:
+            sequenceName: verification_id_seq
+            incrementBy: 1
+            startValue: 1
+        - createTable:
+            tableName: verification
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: verification_id
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: query_text
+                  type: JSONB
+              - column:
+                  name: timestamp
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: result
+                  type: JSONB
+                  constraints:
+                    nullable: true
+              - column:
+                  name: source
+                  type: VARCHAR
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_time
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_time
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+        - createIndex:
+            tableName: verification
+            indexName: verification__verification_id_IDX
+            columns:
+              - column:
+                  name: verification_id

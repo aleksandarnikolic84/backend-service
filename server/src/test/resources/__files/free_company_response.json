@@ -1,0 +1,31 @@
+{
+  "companies": [
+    {
+      "cin": "0ANW1LCD",
+      "company_name": "Duke-Fernandez",
+      "registration_date": "2022-11-22",
+      "address": "079 Karen Pines, West Parker, PA 89544",
+      "is_active": false
+    },
+    {
+      "cin": "4A4U8MHS",
+      "company_name": "Dominguez, Harding and Chung",
+      "registration_date": "2024-03-08",
+      "address": "56724 Hart Wall, Mendezstad, AZ 75095",
+      "is_active": false
+    },
+    {
+      "cin": "ALDAYLG9",
+      "company_name": "Bryant Inc",
+      "registration_date": "2020-11-08",
+      "address": "21961 Lee Locks, Avilafurt, MA 86074",
+      "is_active": true
+    }
+  ],
+  "pagination": {
+    "pageNumber": 0,
+    "pageSize": 8,
+    "totalPages": 1,
+    "totalElements": 3
+  }
+}

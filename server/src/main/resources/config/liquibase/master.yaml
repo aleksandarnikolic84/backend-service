@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+      - file: config/liquibase/v0.1/create_verification_table.yaml

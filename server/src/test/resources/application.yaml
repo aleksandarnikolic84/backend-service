@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: embedded
+  # ===================================================================
+  # Datasource
+  # ===================================================================
+  datasource:
+    username: CompanyRegistry
+    name:
+    password:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+

@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: backend-service
+  liquibase:
+    changelog: classpath:config/liquibase/master.yaml
+  profiles:
+    active:
+  jackson:
+    serialization:
+      indent-output: true
+  # ===================================================================
+  # Datasource
+  # ===================================================================
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/BackendService
+    username: BackendService
+    name:
+    password:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: validate
+  web:
+    client:
+      connect-timeout: 3000
+      read-timeout: 5000
+
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  tomcat:
+    max-threads: 20
+logging:
+  level:
+    ROOT: INFO
+    com.incode: INFO
+
+
+
+backend:
+  company:
+    order: free, premium
+    companyRegistryUrl: http://localhost:8085/api
