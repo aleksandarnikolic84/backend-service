@@ -1,0 +1,65 @@
+name: Run Backend Service Build and Tests and Publish Docker Image
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  buildServiceAndPublishDockerImage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Configure Maven for GitHub Packages
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings>
+                  <servers>
+                    <server>
+                      <id>github</id>
+                      <username>${{github.actor}}</username>
+                      <password>${{secrets.MY_TOKEN}}</password>
+                    </server>
+                  </servers>
+                </settings>" > ~/.m2/settings.xml
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Run Maven build and tests
+        run: mvn clean install
+        continue-on-error: false
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: server/target/surefire-reports
+        continue-on-error: true
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+
+      - name: Build Docker image
+        run: docker build -t ${{secrets.DOCKER_USERNAME}}/incode-backend-service:latest .
+
+      - name: Push Docker image
+        run: docker push ${{secrets.DOCKER_USERNAME}}/incode-backend-service:latest
+
